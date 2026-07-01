@@ -2,25 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" />
   <title>Travel Tracker</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Travels" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="icon" type="image/png" href="icon-192.png" />
+  <script>
+    // Safe-area insets: the dev preview supplies simulated values (URL params now,
+    // postMessage on device switch) so the UI clears the notch/Dynamic Island. On a
+    // real device these stay unset and the CSS falls back to env(safe-area-inset-*).
+    (function () {
+      var keys = { safeTop: "--safe-top", safeRight: "--safe-right", safeBottom: "--safe-bottom", safeLeft: "--safe-left" };
+      function apply(src) {
+        for (var k in keys) if (src && src[k] != null && src[k] !== "") document.documentElement.style.setProperty(keys[k], parseInt(src[k], 10) + "px");
+      }
+      var q = new URLSearchParams(location.search), fromURL = {};
+      for (var k in keys) if (q.has(k)) fromURL[k] = q.get(k);
+      apply(fromURL);
+      window.addEventListener("message", function (e) {
+        if (e.data && e.data.type === "tt-safe-area") apply(e.data.insets);
+      });
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=17" />
 </head>
 <body>
   <div id="map"></div>
+  <div id="scrim" hidden></div>
+  <div id="detail" class="card" hidden aria-hidden="true"><div id="pop-map"></div></div>
 
-  <div id="panel">
-    <div id="stats">
-      <span id="stat-primary">…</span>
-      <span id="stat-secondary"></span>
+  <div id="listview"></div>
+
+  <aside id="sidepanel" class="card" aria-labelledby="place-name" aria-hidden="true" hidden>
+    <div id="sheet-grabber" aria-hidden="true"></div>
+    <button id="panel-close" type="button" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+    <div id="place-head">
+      <span id="place-flag" aria-hidden="true"></span>
+      <div id="place-titles">
+        <h2 id="place-name"></h2>
+        <p id="place-via" hidden></p>
+      </div>
     </div>
-    <button id="toggle" type="button">View: Countries</button>
-  </div>
+    <div id="status-list"></div>
+    <div id="panel-actions"></div>
+  </aside>
 
-  <div id="hint">Tap a region to toggle visited</div>
+  <div id="legend" class="card"></div>
 
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-  <script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-array@3"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-geo@3"></script>
+  <script src="https://cdn.jsdelivr.net/npm/polygon-clipping@0.15.7/dist/polygon-clipping.umd.js"></script>
+  <script src="app.js?v=53"></script>
 </body>
 </html>

@@ -1,0 +1,16 @@
+{
+  "name": "Travel Tracker",
+  "short_name": "Travels",
+  "description": "Track the countries and regions you've lived in, visited, and want to go.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#8fbcdb",
+  "theme_color": "#f4f1ea",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
