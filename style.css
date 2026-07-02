@@ -83,11 +83,11 @@
     --accent: #5b9bff;
     --danger: #ff6b5f;
 
-    --ocean: #0e1b27;
-    --land: #2b333c;
-    --none: #3c4651;
-    --border-on-map: #66788a;
-    --region-border: #8b9bac;
+    --ocean: #0c1d2e;
+    --land: #3a4551;
+    --none: #4c5867;
+    --border-on-map: #90a6bc;
+    --region-border: #aabdd0;
 
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.4),
               0 10px 30px rgba(0, 0, 0, 0.5);

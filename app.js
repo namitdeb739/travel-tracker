@@ -33,11 +33,11 @@ function cssVar(name, fallback) {
 }
 function mapPalette() {
   return {
-    ocean: cssVar("--ocean", darkMQ.matches ? "#0e1b27" : "#8fbcdb"),
-    land: cssVar("--land", darkMQ.matches ? "#2b333c" : "#d6ccb6"),
-    none: cssVar("--none", darkMQ.matches ? "#3c4651" : "#ebe3d2"),
-    border: cssVar("--border-on-map", darkMQ.matches ? "#66788a" : "#5f7180"),
-    regionBorder: cssVar("--region-border", darkMQ.matches ? "#8b9bac" : "#46586a"),
+    ocean: cssVar("--ocean", darkMQ.matches ? "#0c1d2e" : "#8fbcdb"),
+    land: cssVar("--land", darkMQ.matches ? "#3a4551" : "#d6ccb6"),
+    none: cssVar("--none", darkMQ.matches ? "#4c5867" : "#ebe3d2"),
+    border: cssVar("--border-on-map", darkMQ.matches ? "#90a6bc" : "#5f7180"),
+    regionBorder: cssVar("--region-border", darkMQ.matches ? "#aabdd0" : "#46586a"),
     selectInk: darkMQ.matches ? "#f4f7fa" : "#15202b",
   };
 }
@@ -971,8 +971,8 @@ async function init() {
           "interpolate",
           ["linear"],
           ["zoom"],
-          1, ["case", ["boolean", ["feature-state", "selected"], false], 2, ["boolean", ["feature-state", "hover"], false], 1, 0.7],
-          5, ["case", ["boolean", ["feature-state", "selected"], false], 2.8, ["boolean", ["feature-state", "hover"], false], 1.8, 1.4],
+          1, ["case", ["boolean", ["feature-state", "selected"], false], 2.2, ["boolean", ["feature-state", "hover"], false], 1.2, 0.95],
+          5, ["case", ["boolean", ["feature-state", "selected"], false], 3, ["boolean", ["feature-state", "hover"], false], 2, 1.9],
         ],
       },
     });
